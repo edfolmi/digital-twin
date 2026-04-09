@@ -1,25 +1,71 @@
 @import 'tailwindcss';
 
-/* Smooth scrolling animation keyframe */
-@keyframes bounce {
+:root {
+  --twin-chat-bg: oklch(0.985 0.002 285);
+}
+
+@keyframes twin-dot-bounce {
   0%,
   80%,
   100% {
     transform: translateY(0);
+    opacity: 0.35;
   }
   40% {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
+    opacity: 1;
   }
 }
 
-.animate-bounce {
-  animation: bounce 1.4s infinite;
+.animate-twin-dot {
+  animation: twin-dot-bounce 1.2s ease-in-out infinite;
 }
 
-.delay-100 {
-  animation-delay: 0.1s;
+.twin-dot-delay-1 {
+  animation-delay: 0.15s;
 }
 
-.delay-200 {
-  animation-delay: 0.2s;
+.twin-dot-delay-2 {
+  animation-delay: 0.3s;
+}
+
+@keyframes twin-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-twin-message-in {
+  animation: twin-message-in 0.35s ease-out both;
+}
+
+.twin-page-mesh {
+  background-color: oklch(0.985 0.004 285);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -30%, oklch(0.92 0.04 250 / 0.35), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 100% 50%, oklch(0.93 0.05 160 / 0.2), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 0% 80%, oklch(0.94 0.03 280 / 0.25), transparent 45%);
+}
+
+.twin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.78 0.01 285) transparent;
+}
+
+.twin-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.twin-scroll::-webkit-scrollbar-thumb {
+  background: oklch(0.78 0.01 285);
+  border-radius: 999px;
+}
+
+.twin-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }
