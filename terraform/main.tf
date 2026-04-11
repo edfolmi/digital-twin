@@ -109,11 +109,6 @@ resource "aws_iam_role_policy_attachment" "lambda_basic" {
   role       = aws_iam_role.lambda_role.name
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_bedrock" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonBedrockFullAccess"
-  role       = aws_iam_role.lambda_role.name
-}
-
 resource "aws_iam_role_policy_attachment" "lambda_s3" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
   role       = aws_iam_role.lambda_role.name
@@ -136,7 +131,8 @@ resource "aws_lambda_function" "api" {
       CORS_ORIGINS     = var.use_custom_domain ? "https://${var.root_domain},https://www.${var.root_domain}" : "https://${aws_cloudfront_distribution.main.domain_name}"
       S3_BUCKET        = aws_s3_bucket.memory.id
       USE_S3           = "true"
-      BEDROCK_MODEL_ID = var.bedrock_model_id
+      OPENAI_API_KEY   = var.openai_api_key
+      OPENAI_MODEL     = var.openai_model
     }
   }
 
